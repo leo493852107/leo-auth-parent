@@ -44,4 +44,41 @@ public class SysRoleController {
         IPage<SysRole> pageModel = sysRoleService.selectPage(pageParam, sysRoleQueryVo);
         return Result.ok(pageModel);
     }
+
+    @ApiOperation("添加角色")
+    @PostMapping("/save")
+    public Result saveRole(@RequestBody SysRole sysRole) {
+        boolean save = sysRoleService.save(sysRole);
+        if (save) {
+            return Result.ok();
+        }
+        return Result.fail();
+    }
+
+    @ApiOperation("查询角色")
+    @GetMapping("/findRoleById/{id}")
+    public Result findRoleById(@PathVariable Long id) {
+        SysRole sysRole = sysRoleService.getById(id);
+        return Result.ok(sysRole);
+    }
+
+    @ApiOperation("修改角色")
+    @PostMapping("/updateRoleById/")
+    public Result updateRoleById(@RequestBody SysRole sysRole) {
+        boolean b = sysRoleService.updateById(sysRole);
+        if (b) {
+            return Result.ok();
+        }
+        return Result.fail();
+    }
+
+    @ApiOperation("批量删除角色")
+    @DeleteMapping("/batchDelete")
+    public Result batchDelete(@RequestBody List<Long> ids) {
+        boolean b = sysRoleService.removeByIds(ids);
+        if (b) {
+            return Result.ok();
+        }
+        return Result.fail();
+    }
 }
