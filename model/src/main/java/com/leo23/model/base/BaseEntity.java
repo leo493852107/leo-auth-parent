@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +19,10 @@ public class BaseEntity implements Serializable {
     private String id;
 
     @TableField("create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @TableField("update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     @TableLogic  //逻辑删除 默认效果 0 没有删除 1 已经删除
     @TableField("is_deleted")

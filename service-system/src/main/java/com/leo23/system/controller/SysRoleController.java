@@ -63,7 +63,7 @@ public class SysRoleController {
     }
 
     @ApiOperation("修改角色")
-    @PostMapping("/updateRoleById/")
+    @PostMapping("/updateRoleById")
     public Result updateRoleById(@RequestBody SysRole sysRole) {
         boolean b = sysRoleService.updateById(sysRole);
         if (b) {
