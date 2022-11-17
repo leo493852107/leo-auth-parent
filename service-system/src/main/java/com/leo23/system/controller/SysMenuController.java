@@ -2,6 +2,7 @@ package com.leo23.system.controller;
 
 import com.leo23.common.result.Result;
 import com.leo23.model.system.SysMenu;
+import com.leo23.model.vo.AssginMenuVo;
 import com.leo23.system.service.SysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -57,6 +58,20 @@ public class SysMenuController {
     @DeleteMapping("/remove/{id}")
     public Result remove(@PathVariable String id) {
         sysMenuService.removeMenuById(id);
+        return Result.ok();
+    }
+
+    @ApiOperation("根据角色获取菜单")
+    @GetMapping("/toAssign/{roleId}")
+    public Result toAssign(@PathVariable String roleId) {
+        List<SysMenu> list = sysMenuService.findMenuByRoleId(roleId);
+        return Result.ok(list);
+    }
+
+    @ApiOperation("给角色分配菜单权限")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginMenuVo assginMenuVo) {
+        sysMenuService.doAssign(assginMenuVo);
         return Result.ok();
     }
 }
